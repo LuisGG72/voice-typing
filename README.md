@@ -11,6 +11,7 @@ Built because I got tired of typing when I could just... *talk*. Works offline, 
 ## Features
 
 - 🎙️ **Real-time dictation** - Words appear as you speak
+- 🚀 **Voice commands** - Open apps, search Google, run scripts with your voice
 - 🔒 **100% offline** - No data leaves your machine (uses Vosk)
 - 🐧 **Linux-native** - Tested on Arch/CachyOS, should work everywhere
 - 🪶 **Lightweight** - ~40MB model, minimal CPU usage
@@ -40,6 +41,40 @@ python voice_typing.py
 5. **Right click** = Quit
 
 Your voice gets captured at 16kHz, processed locally by Vosk, and typed wherever your cursor is. No internet needed after setup.
+
+## 🚀 Voice Commands (This is the good stuff)
+
+Besides typing, you can control your computer with voice commands:
+
+| Say this... | And it does this |
+|-------------|------------------|
+| "Abre Firefox" | Opens Firefox browser |
+| "Abre terminal" | Opens Konsole terminal |
+| "Abre Spotify" | Opens Spotify |
+| "Busca [anything]" | Opens Google search in Firefox |
+| "Noticias de [topic]" | Opens Google News search |
+| "Abre YouTube" | Opens YouTube |
+| "Qué tiempo hace" | Opens weather for Madrid |
+| "Borra" | Deletes last word (Ctrl+Backspace) |
+| "Borra todo" | Deletes all text (Ctrl+A, Delete) |
+| "intro" / "enter" | Presses Return key |
+
+### Adding your own commands
+
+Want to open VSCode? Launch your backup script? Control your lights? Just edit the `type_text()` method and add your command:
+
+```python
+# Around line 480 in voice_typing.py
+if text_clean.startswith("abre "):
+    app_name = text_clean[5:].strip().lower()
+    if app_name in ["vscode", "code"]:
+        import subprocess
+        subprocess.Popen(['code'])
+        print("📝 VSCode abierto")
+        return
+```
+
+The sky's the limit. Voice control your entire Linux setup.
 
 ## Requirements
 
