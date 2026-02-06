@@ -50,7 +50,6 @@ Besides typing, you can control your computer with voice commands:
 |-------------|------------------|
 | "Abre Firefox" | Opens Firefox browser |
 | "Abre terminal" | Opens Konsole terminal |
-| "Abre Spotify" | Opens Spotify |
 | "Busca [anything]" | Opens Google search in Firefox |
 | "Noticias de [topic]" | Opens Google News search |
 | "Abre YouTube" | Opens YouTube |
