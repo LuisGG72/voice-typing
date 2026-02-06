@@ -48,15 +48,17 @@ Besides typing, you can control your computer with voice commands:
 
 | Say this... | And it does this |
 |-------------|------------------|
-| "Abre Firefox" | Opens Firefox browser |
+| "Abre Firefox" | Opens your default browser |
 | "Abre terminal" | Opens Konsole terminal |
-| "Busca [anything]" | Opens Google search in Firefox |
+| "Busca [anything]" | Opens Google search in your browser |
 | "Noticias de [topic]" | Opens Google News search |
 | "Abre YouTube" | Opens YouTube |
 | "Qué tiempo hace" | Opens weather for Madrid |
 | "Borra" | Deletes last word (Ctrl+Backspace) |
 | "Borra todo" | Deletes all text (Ctrl+A, Delete) |
 | "intro" / "enter" | Presses Return key |
+
+**Note:** All browser commands use `xdg-open`, which means they work with **whatever browser you have set as default** — Firefox, Chrome, Brave, Chromium, Edge... doesn't matter.
 
 ### Adding your own commands
 

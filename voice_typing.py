@@ -723,13 +723,13 @@ class VoiceTyperVosk:
                 return
             
             # COMANDOS DE SISTEMA EXPANSIBLES
-            # "abre firefox" / "abre el navegador" → Abre Firefox
+            # "abre firefox" / "abre el navegador" → Abre navegador por defecto
             if text_clean.startswith("abre "):
                 app_name = text_clean[5:].strip().lower()
-                if app_name in ["firefox", "navegador", "el navegador"]:
+                if app_name in ["firefox", "navegador", "el navegador", "chrome", "brave"]:
                     import subprocess
-                    subprocess.Popen(['firefox'])
-                    print("🌐 Firefox abierto")
+                    subprocess.Popen(['xdg-open', 'https://'])
+                    print("🌐 Navegador abierto")
                     return
                 elif app_name in ["terminal", "consola", "konsole"]:
                     import subprocess
@@ -747,18 +747,18 @@ class VoiceTyperVosk:
                     print("📝 VSCode abierto")
                     return
             
-            # "busca X" / "buscar X" → Busca en Google
+            # "busca X" / "buscar X" → Busca en Google (usa navegador por defecto)
             if text_clean.startswith(("busca ", "buscar ")):
                 query = text[text.lower().find(" ")+1:].strip()
                 if query:
                     import urllib.parse
                     search_url = f"https://www.google.com/search?q={urllib.parse.quote(query)}"
                     import subprocess
-                    subprocess.Popen(['firefox', search_url])
+                    subprocess.Popen(['xdg-open', search_url])
                     print(f"🔍 Buscando: {query}")
                     return
             
-            # "noticias de X" / "noticias sobre X" → Busca noticias
+            # "noticias de X" / "noticias sobre X" → Busca noticias (navegador por defecto)
             if text_clean.startswith(("noticias de ", "noticias sobre ", "noticias ")):
                 if text_clean.startswith("noticias de "):
                     query = text[12:].strip()
@@ -773,21 +773,21 @@ class VoiceTyperVosk:
                     query_clean = query.replace("winona rider", "winona ryder")
                     news_url = f"https://news.google.com/search?q={urllib.parse.quote(query_clean)}&hl=es"
                     import subprocess
-                    subprocess.Popen(['firefox', news_url])
+                    subprocess.Popen(['xdg-open', news_url])
                     print(f"📰 Buscando noticias de: {query_clean}")
                     return
             
-            # "abre youtube" / "youtube" → Abre YouTube
+            # "abre youtube" / "youtube" → Abre YouTube (navegador por defecto)
             if text_clean in ["youtube", "abre youtube", "abrir youtube"]:
                 import subprocess
-                subprocess.Popen(['firefox', 'https://youtube.com'])
+                subprocess.Popen(['xdg-open', 'https://youtube.com'])
                 print("📺 YouTube abierto")
                 return
             
             # "clima" / "tiempo" / "qué tiempo hace" → Abre clima de Madrid
             if text_clean in ["clima", "tiempo", "qué tiempo hace", "que tiempo hace"]:
                 import subprocess
-                subprocess.Popen(['firefox', 'https://www.google.com/search?q=tiempo+madrid'])
+                subprocess.Popen(['xdg-open', 'https://www.google.com/search?q=tiempo+madrid'])
                 print("🌤️ Consultando clima de Madrid")
                 return
             
